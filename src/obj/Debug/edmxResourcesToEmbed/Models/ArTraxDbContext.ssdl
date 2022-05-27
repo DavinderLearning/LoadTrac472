@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ArTraxTraxDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerName" Type="nvarchar(max)" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="AddressLine1" Type="nvarchar(max)" />
+    <Property Name="City" Type="nvarchar(max)" />
+    <Property Name="Province" Type="nvarchar(max)" />
+    <Property Name="PostalCode" Type="nvarchar(max)" />
+    <Property Name="Country" Type="nvarchar(max)" />
+    <Property Name="MainContact" Type="nvarchar(max)" />
+    <Property Name="EmailAddress" Type="nvarchar(max)" />
+    <Property Name="ReceiveInvoiceByEmail" Type="bit" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar(max)" />
+    <Property Name="Cell" Type="nvarchar(max)" />
+    <Property Name="Fax" Type="nvarchar(max)" />
+    <Property Name="TaxExempt" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="LastUpdatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdatedOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Equips">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="InvoiceLines">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InvoiceId" Type="int" Nullable="false" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="EquipId" Type="int" Nullable="false" />
+    <Property Name="LoadTypeId" Type="int" Nullable="false" />
+    <Property Name="TruckId" Type="int" Nullable="false" />
+    <Property Name="AddToInvoice" Type="bit" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="TicketDate" Type="datetime" Nullable="false" />
+    <Property Name="TicketNumber" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="IsLineTaxable" Type="bit" Nullable="false" />
+    <Property Name="UserField1" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="InvoicePayments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InvoiceId" Type="int" Nullable="false" />
+    <Property Name="CheckNumber" Type="nvarchar(max)" />
+    <Property Name="IsDedection" Type="bit" Nullable="false" />
+    <Property Name="Note" Type="nvarchar(max)" />
+    <Property Name="PaymentDate" Type="datetime" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Invoices">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InvoiceNumber" Type="nvarchar(max)" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="TaxName" Type="nvarchar(max)" />
+    <Property Name="TaxRate" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="TaxAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Subtotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Balance" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="InvoiceDate" Type="datetime" Nullable="false" />
+    <Property Name="InvoiceDueDate" Type="datetime" Nullable="false" />
+    <Property Name="Note" Type="nvarchar(max)" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="LastUpdatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdatedOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LoadTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="SystemSettings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NextInvoiceNumber" Type="nvarchar(max)" />
+    <Property Name="CompanyName" Type="nvarchar(max)" />
+    <Property Name="CompanyAddress" Type="nvarchar(max)" />
+    <Property Name="CompanyCity" Type="nvarchar(max)" />
+    <Property Name="CompanyState" Type="nvarchar(max)" />
+    <Property Name="CompanyPhone" Type="nvarchar(max)" />
+    <Property Name="CompanyFax" Type="nvarchar(max)" />
+    <Property Name="CompanyMobile" Type="nvarchar(max)" />
+    <Property Name="CurrentInvoiceDate" Type="datetime" Nullable="false" />
+    <Property Name="CurrentInvoiceDueDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TaxRates">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Rate" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Trucks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="ShortCode" Type="nvarchar(max)" />
+    <Property Name="IsContractor" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_dbo_InvoiceLines_dbo_Equips_EquipId">
+    <End Role="Equips" Type="Self.Equips" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="InvoiceLines" Type="Self.InvoiceLines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equips">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InvoiceLines">
+        <PropertyRef Name="EquipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_InvoiceLines_dbo_LoadTypes_LoadTypeId">
+    <End Role="LoadTypes" Type="Self.LoadTypes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="InvoiceLines" Type="Self.InvoiceLines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoadTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InvoiceLines">
+        <PropertyRef Name="LoadTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_InvoiceLines_dbo_Products_ProductId">
+    <End Role="Products" Type="Self.Products" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="InvoiceLines" Type="Self.InvoiceLines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InvoiceLines">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_InvoiceLines_dbo_Trucks_TruckId">
+    <End Role="Trucks" Type="Self.Trucks" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="InvoiceLines" Type="Self.InvoiceLines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trucks">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InvoiceLines">
+        <PropertyRef Name="TruckId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ArTraxTraxDbModelStoreContainer">
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Equips" EntityType="Self.Equips" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InvoiceLines" EntityType="Self.InvoiceLines" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InvoicePayments" EntityType="Self.InvoicePayments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoadTypes" EntityType="Self.LoadTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SystemSettings" EntityType="Self.SystemSettings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaxRates" EntityType="Self.TaxRates" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Trucks" EntityType="Self.Trucks" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_InvoiceLines_dbo_Equips_EquipId" Association="Self.FK_dbo_InvoiceLines_dbo_Equips_EquipId">
+      <End Role="Equips" EntitySet="Equips" />
+      <End Role="InvoiceLines" EntitySet="InvoiceLines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_InvoiceLines_dbo_LoadTypes_LoadTypeId" Association="Self.FK_dbo_InvoiceLines_dbo_LoadTypes_LoadTypeId">
+      <End Role="LoadTypes" EntitySet="LoadTypes" />
+      <End Role="InvoiceLines" EntitySet="InvoiceLines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_InvoiceLines_dbo_Products_ProductId" Association="Self.FK_dbo_InvoiceLines_dbo_Products_ProductId">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="InvoiceLines" EntitySet="InvoiceLines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_InvoiceLines_dbo_Trucks_TruckId" Association="Self.FK_dbo_InvoiceLines_dbo_Trucks_TruckId">
+      <End Role="Trucks" EntitySet="Trucks" />
+      <End Role="InvoiceLines" EntitySet="InvoiceLines" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

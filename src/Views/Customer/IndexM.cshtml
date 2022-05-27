@@ -1,0 +1,43 @@
+﻿@model IEnumerable<ArTrax472.Models.Customer>
+@{
+    ViewBag.Title = "Home";
+}
+<script src="~/Scripts/_DataServiceCaller.js"></script>
+<script>
+    function newTicket(e) {
+        var id = e.id;
+        //alert(id);
+        var truckId = TruckId.value;
+        var truckName = $("#TruckId").text();
+        var url = "../InvoiceLine/CreateM2?pCustomerId=" + id + "&pTruckId=" + truckId;
+        //alert(url);
+        window.open(url,"_blank");
+    }
+</script> 
+<div data-role="header"  class="ui-bar ui-bar-b" >
+    Select Truck: <select id="TruckId">
+        <option value="25">777</option>
+        <option value="45">007</option>
+    </select>
+    
+                
+</div>
+<div class="ui-bar ui-bar-b">
+	Customer:
+</div>
+<div data-role="listview" data-theme="c" data-content-theme="d" data-mini="true" data-filter="true">
+
+    @foreach (var item in Model)
+    {
+        <div data-role="collapsible">
+            <h3>@Html.DisplayFor(modelItem => item.CustomerName)</h3>
+            <p>
+               @* <a data-mini="true" data-role="button" href="@Url.Action("IndexM", "InvoiceLine", new { pCustomerId = item.Id })" target="_blank">View Tickets</a>*@                
+                @*href="@Url.Action("CreateM", "InvoiceLine", new { pCustomerId = item.Id , pTruckid=25})" target="_blank"*@
+                @*<input type="button" data-mini="true" data-role="button"  value="New Ticket" onclick="newTicket(this);" id="@item.Id" />*@
+                <a data-mini="true" data-role="button" onclick="newTicket(this);" id="@item.Id">New Ticket</a>
+
+            </p>
+        </div>
+    }
+</div>
