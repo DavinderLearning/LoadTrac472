@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArTrax472", "ArTrax472.csproj", "{6F2CF090-D155-431D-BEAD-56D95E314D73}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArTrax472b", "..\ArTrax472b\ArTrax472b.csproj", "{1EF3ED81-705A-4F8B-A5B4-B1395DA17E03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,11 +17,15 @@ Global
 		{6F2CF090-D155-431D-BEAD-56D95E314D73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F2CF090-D155-431D-BEAD-56D95E314D73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F2CF090-D155-431D-BEAD-56D95E314D73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EF3ED81-705A-4F8B-A5B4-B1395DA17E03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EF3ED81-705A-4F8B-A5B4-B1395DA17E03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EF3ED81-705A-4F8B-A5B4-B1395DA17E03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EF3ED81-705A-4F8B-A5B4-B1395DA17E03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {DE9EFB14-B03D-4E4E-BC53-529A96300BE5}
+		SolutionGuid = {D86D9D86-2A1D-4FA5-ABDA-FBDF24966793}
 	EndGlobalSection
 EndGlobal

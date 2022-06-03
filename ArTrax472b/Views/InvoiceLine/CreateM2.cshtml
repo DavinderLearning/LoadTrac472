@@ -1,0 +1,84 @@
+﻿@model ArTrax472b.Models.InvoiceLine
+@{
+    ViewBag.Title = "Create Ticket";
+}
+<script src="~/Scripts/_DataServiceCaller.js"></script>
+<script>
+
+    $(document).ready(function () {
+        var url = "/Customer/Get?pId=" + @Model.CustomerId
+       getData(url, showCustomerNameCallback);
+    });
+    function showCustomerNameCallback(data) {
+        $("#txtCustomerName").val(data.CustomerName);
+    }
+
+</script>
+<div data-role="header">
+    <input type="text" id="txtCustomerName" />
+</div>
+ 
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)    
+    <fieldset>
+        <legend>InvoiceLine</legend>
+         
+        <fieldset data-role="controlgroup" data-type="horizontal">
+            <legend></legend>
+            <input data-mini="true" type="radio" name="EquipId" id="radio-choice-210" value="1" />
+            <label for="radio-choice-210">Truck</label>
+            <input data-mini="true" type="radio" name="EquipId" id="radio-choice-220" value="2" />
+            <label for="radio-choice-220">TnP</label>
+            <input data-mini="true" type="radio" name="EquipId" id="radio-choice-221" value="3" />
+            <label for="radio-choice-221">TnT</label>
+            <input data-mini="true" type="radio" name="EquipId" id="radio-choice-222" value="4" />
+            <label for="radio-choice-222">4XL</label>
+        </fieldset>
+        <fieldset data-role="controlgroup" data-type="horizontal">
+            <legend></legend>
+            <input data-mini="true" type="radio" name="LoadTypeId" id="radio-choice-21" value="1" />
+            <label for="radio-choice-21">Load</label>
+            <input data-mini="true" type="radio" name="LoadTypeId" id="radio-choice-22" value="2" />
+            <label for="radio-choice-22">Hours</label>
+            <input data-mini="true" type="radio" name="LoadTypeId" id="radio-choice-23" value="3" />
+            <label for="radio-choice-23">Tons</label>
+            <input data-mini="true" type="radio" name="LoadTypeId" id="radio-choice-24" value="4" />
+            <label for="radio-choice-24">DF</label>
+            <input data-mini="true" type="radio" name="LoadTypeId" id="radio-choice-25" value="5" />
+            <label for="radio-choice-25">Misc</label>
+            <input data-mini="true" type="radio" name="LoadTypeId" id="radio-choice-26" value="6" />
+            <label for="radio-choice-26">Toll</label>
+        </fieldset>
+
+
+        <input type="text" id="Description" placeholder="Description" name="Description" />
+        @Html.ValidationMessageFor(model => model.Description)
+
+        <input type="number" id="Quantity" placeholder="Quantity" name="Quantity" onclick="this.select();" />
+        @Html.ValidationMessageFor(model => model.Quantity)
+
+
+
+        <p>
+            <a href="#" data-icon="check" data-role="button" data-mini="true" onclick="$(this).closest('form').submit()">Save</a>
+        </p>
+        <div class="hideField" style="visibility: hidden">
+            @Html.EditorFor(model => model.InvoiceId)
+            @Html.EditorFor(model => model.AddToInvoice)
+            @Html.EditorFor(model => model.ProductId)
+
+
+        </div>
+                Price: @Html.EditorFor(model => model.Price)
+                Truck: @Html.EditorFor(model => model.TruckId)
+                Date: @Html.EditorFor(model => model.TicketDate)
+
+        <div id="additionalInfo" style="visibility: hidden">
+            @Html.EditorFor(model => model.CustomerId)
+           
+                
+
+        </div>
+    </fieldset>
+}

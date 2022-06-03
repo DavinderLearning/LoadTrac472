@@ -1,0 +1,128 @@
+﻿@model IEnumerable<ArTrax472b.Models.Customer>
+
+@{
+    ViewBag.Title = "Home";
+}
+<h2>Customer Listing</h2>
+@using (Html.BeginForm())
+{
+    
+    @Html.ActionLink("Create New", "Create")
+    <div style="text-align: right;">
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </div>
+    
+}
+<script>
+    $(document).ready(function () {
+        $('tr').click(function () {
+            //window.location = $(this).find('a').attr('href');
+            window.open("./Customer/Edit/" + $(this).attr('id'));
+            //window.location = $(this).find('a').attr('href')
+        }).hover(function () {
+            $(this).toggleClass('hover');
+        });
+    });
+
+</script>
+<style>
+    tr.hover {
+        cursor: pointer;
+        background-color: Highlight;
+        color: white;
+        font-weight: bold;
+        /* whatever other hover styles you want */
+    }
+</style>
+<style>
+    /*override main content*/
+    .main-content {
+        padding-left: 10px;
+        margin-left: 20px;
+    }
+</style>
+<table style="width: 100%">
+    <tr class="indexTableHeaders">
+        <th style="width: 350px;">
+            @Html.ActionLink("Name", "Index2", new { sortOrder = "CustomerName", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th style="width: 300px;">
+            @Html.DisplayNameFor(model => model.AddressLine1)
+        </th>
+
+        <th>
+            @Html.ActionLink("City", "Index2", new { sortOrder = "City", currentFilter = ViewBag.CurrentFilter })
+
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Province)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.MainContact)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </th>
+        @*  <th >
+            @Html.DisplayNameFor(model => model.ReceiveInvoiceByEmail)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cell)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fax)
+        </th>
+        @* <th>
+            @Html.DisplayNameFor(model => model.TaxExempt)
+        </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr id="@item.Id" style="border-bottom:solid;border-width:thin;">
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddressLine1)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Province)
+            </td>*@
+            @* <td>
+                @Html.DisplayFor(modelItem => item.MainContact)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailAddress)
+            </td>
+
+            @*
+            <td>
+                @Html.DisplayFor(modelItem => item.ReceiveInvoiceByEmail)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cell)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fax)
+            </td>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.TaxExempt)
+            </td>*@
+
+        </tr>
+    }
+
+</table>
