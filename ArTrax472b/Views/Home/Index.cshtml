@@ -8,6 +8,20 @@
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
+<div id="tabstrip">
+    <ul>
+        <li>Tab 1</li>
+        <li>Tab 2</li>
+    </ul>
+    <div>Content 1</div>
+    <div>Content 2</div>
+</div>
+
+<script>
+    var tabStrip = $("#tabstrip").kendoTabStrip().data("kendoTabStrip");
+    tabStrip.enable(tabStrip.tabGroup.children().eq(0), false);
+    tabStrip.enable(tabStrip.tabGroup.children().eq(0), true);
+</script>
 <div class="row">
     <div class="col-md-4">
         <h2>Getting started</h2>

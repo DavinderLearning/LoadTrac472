@@ -105,4 +105,3 @@ C:\Dev\raient\git\LoadTrac472\ArTrax472b\obj\Debug\ArTrax472b.csproj.CoreCompile
 C:\Dev\raient\git\LoadTrac472\ArTrax472b\obj\Debug\ArTrax472b.csproj.CopyComplete
 C:\Dev\raient\git\LoadTrac472\ArTrax472b\obj\Debug\ArTrax472b.dll
 C:\Dev\raient\git\LoadTrac472\ArTrax472b\obj\Debug\ArTrax472b.pdb
-C:\Dev\raient\git\LoadTrac472\ArTrax472b\obj\Debug\ArTrax472b.csproj.AssemblyReference.cache

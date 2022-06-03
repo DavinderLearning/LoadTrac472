@@ -17,10 +17,21 @@ namespace ArTrax472.Controllers
 
          ArTraxTraxDbEntities db = new  ArTraxTraxDbEntities();
 
-        public ActionResult GetTrucks2()
-        {
-            return View(db.Trucks.ToList());
+        public JsonResult GetTrucks()
+        {  
+            return Json(db.Trucks.ToList(), JsonRequestBehavior.AllowGet);
         }
-
+        public JsonResult GetProducts()
+        {
+            return Json(db.Products.ToList(), JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetEquips()
+        {
+            return Json(db.Equips.ToList(), JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetLoadTypes()
+        {
+            return Json(db.LoadTypes.ToList(), JsonRequestBehavior.AllowGet);
+        }
     }
 }
