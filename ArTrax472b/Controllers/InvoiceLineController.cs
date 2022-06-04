@@ -32,7 +32,7 @@ namespace ArTrax41.Controllers
 
     public ActionResult New()
         {
-            InvoiceLine invoiceLine = new InvoiceLine { InvoiceId = 0, ProductId = 1, TicketNumber = "VV",TicketDate=DateTime.Now.Date };
+            InvoiceLine invoiceLine = new InvoiceLine { InvoiceId = 0, ProductId = 1, TicketNumber = "",TicketDate=DateTime.Now.Date };
             List<InvoiceLine> invoiceLines = new List<InvoiceLine>();
             invoiceLines.Add(invoiceLine);
             return Json(invoiceLines.ToList(),JsonRequestBehavior.AllowGet);

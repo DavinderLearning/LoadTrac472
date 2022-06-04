@@ -5,16 +5,13 @@ var selectTrucks ;
 var selectLoadTypes;
 var selectEquips;
 var selectProducts;
-
 var newTicketObject;
-
 //used for adding/removing items to the invoice in the invoice edit screen
 var selectedDataItems = [];
 var selectedDataItemsInvoice = [];
 var invoiceId = 0;
 var invoiceLinesAvailableData;
 var invoiceLinesData;
-
 $(document).ready(function () {    
     loadOpenTickets();
     getTruckData();
@@ -27,7 +24,6 @@ $(document).ready(function () {
 function getCustomerId() {
     return txtCustomerId.value;
 }
-
 ///creates in instance of a new ticket with the desired default values
 function newTicket() {
     blnIsEditMode = false;
@@ -102,8 +98,39 @@ function viewTicketWindowCallback(data) {
 
     console.log("result is: " + result);
 
-    $("#templTicket").tmpl(data).appendTo("#dvCreateTicket");
-      
+    loadKendoDropdown(selectTrucks, "#cboTruck", "Name", "Id");
+    cboTruck.value = data.TruckId;
+    setDropdownValue("#cboTruck", data.TruckId);
+
+
+    loadKendoDropdown(selectLoadTypes, "#cboLoadType", "Name", "Id");
+    setDropdownValue("#cboLoadType", data.LoadTypeId);
+
+    loadKendoDropdown(selectEquips, "#cboEquip", "Name", "Id");
+    setDropdownValue("#cboEquip", data.EquipId);
+
+    $("#cboEquip").buttonset();
+
+    loadKendoDropdown(selectProducts, "#cboProduct", "Name", "Id");
+    setDropdownValue("#cboProduct", data.ProductId);
+
+    txtTicketId.value = data.Id;
+    $("#txtTicketCreate_Date").kendoDatePicker();
+
+    var title = "Ticket Entry: <New Ticket>"
+    if (blnIsEditMode) {
+        title = "Ticket Entry: <Editing Ticket Id: " + data.Id + ">"
+        //set the invoiceId for saving the ticket
+        invoiceId = data.InvoiceId;
+        //set the datepicker default value
+        txtTicketCreate_Date.value = formatJSONDate(data.TicketDate);
+
+    }
+    else {
+        //new ticket window opening
+        // loadOpenTickets();
+    }
+    openModalWindow("#dvCreateTicket", title);
 }
 function postEditTicket() {
     var url = "/InvoiceLine/CreateJ";
