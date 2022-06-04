@@ -70,36 +70,10 @@ namespace ArTrax41.Controllers
       ((DbContext) this.db).SaveChanges();
     }
 
-    //public ActionResult GetOpenTickets(int CustomerId)
-    //{
-    //  // ISSUE: object of a compiler-generated type is created
-    //  // ISSUE: variable of a compiler-generated type
-    //  InvoiceLineController.\u003C\u003Ec__DisplayClass2 cDisplayClass2 = new InvoiceLineController.\u003C\u003Ec__DisplayClass2();
-    //  // ISSUE: reference to a compiler-generated field
-    //  cDisplayClass2.CustomerId = CustomerId;
-    //  ParameterExpression parameterExpression1;
-    //  ParameterExpression parameterExpression2;
-    //  // ISSUE: method reference
-    //  // ISSUE: field reference
-    //  // ISSUE: method reference
-    //  // ISSUE: method reference
-    //  return (ActionResult) this.Json((object) ((IEnumerable<InvoiceLine>) ((IQueryable<InvoiceLine>) this.db.InvoiceLines).Where<InvoiceLine>(Expression.Lambda<Func<InvoiceLine, bool>>((Expression) Expression.AndAlso((Expression) Expression.Equal((Expression) Expression.Property((Expression) parameterExpression1, (MethodInfo) MethodBase.GetMethodFromHandle(__methodref (InvoiceLine.get_CustomerId))), (Expression) Expression.Field((Expression) Expression.Constant((object) cDisplayClass2), FieldInfo.GetFieldFromHandle(__fieldref (InvoiceLineController.\u003C\u003Ec__DisplayClass2.CustomerId)))), (Expression) Expression.Equal((Expression) Expression.Property((Expression) parameterExpression1, (MethodInfo) MethodBase.GetMethodFromHandle(__methodref (InvoiceLine.get_InvoiceId))), (Expression) Expression.Constant((object) 0, typeof (int)))), parameterExpression1)).OrderBy<InvoiceLine, DateTime>(Expression.Lambda<Func<InvoiceLine, DateTime>>((Expression) Expression.Property((Expression) parameterExpression2, (MethodInfo) MethodBase.GetMethodFromHandle(__methodref (InvoiceLine.get_TicketDate))), parameterExpression2))).ToList<InvoiceLine>(), (JsonRequestBehavior) 0);
-    //}
-
-    //public ActionResult GetInvoiceLines(int InvoiceId)
-    //{
-    //  // ISSUE: object of a compiler-generated type is created
-    //  // ISSUE: variable of a compiler-generated type
-    //  InvoiceLineController.\u003C\u003Ec__DisplayClass4 cDisplayClass4 = new InvoiceLineController.\u003C\u003Ec__DisplayClass4();
-    //  // ISSUE: reference to a compiler-generated field
-    //  cDisplayClass4.InvoiceId = InvoiceId;
-    //  ParameterExpression parameterExpression1;
-    //  ParameterExpression parameterExpression2;
-    //  // ISSUE: method reference
-    //  // ISSUE: field reference
-    //  // ISSUE: method reference
-    //  return (ActionResult) this.Json((object) ((IEnumerable<InvoiceLine>) ((IQueryable<InvoiceLine>) this.db.InvoiceLines).Where<InvoiceLine>(Expression.Lambda<Func<InvoiceLine, bool>>((Expression) Expression.Equal((Expression) Expression.Property((Expression) parameterExpression1, (MethodInfo) MethodBase.GetMethodFromHandle(__methodref (InvoiceLine.get_InvoiceId))), (Expression) Expression.Field((Expression) Expression.Constant((object) cDisplayClass4), FieldInfo.GetFieldFromHandle(__fieldref (InvoiceLineController.\u003C\u003Ec__DisplayClass4.InvoiceId)))), parameterExpression1)).OrderBy<InvoiceLine, DateTime>(Expression.Lambda<Func<InvoiceLine, DateTime>>((Expression) Expression.Property((Expression) parameterExpression2, (MethodInfo) MethodBase.GetMethodFromHandle(__methodref (InvoiceLine.get_TicketDate))), parameterExpression2))).ToList<InvoiceLine>(), (JsonRequestBehavior) 0);
-    //}
+        public ActionResult GetOpenTickets(int CustomerId)
+        {
+            return Json(this.db.InvoiceLines.Take(5).ToList(), JsonRequestBehavior.AllowGet);
+        } 
 
     [HttpPost]
     public void AddLineToInvoice(InvoiceLine pLine)
@@ -120,11 +94,6 @@ namespace ArTrax41.Controllers
       }).InvoiceId = 0;
       ((DbContext) this.db).SaveChanges();
     }
-
-         
-
-    
-
     public ActionResult Details(int id = 0)
     {
       InvoiceLine invoiceLine = this.db.InvoiceLines.Find(new object[1]

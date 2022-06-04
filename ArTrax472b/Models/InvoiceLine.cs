@@ -29,10 +29,5 @@ namespace ArTrax472b.Models
         public decimal Price { get; set; }
         public bool IsLineTaxable { get; set; }
         public string UserField1 { get; set; }
-    
-        public virtual Equip Equip { get; set; }
-        public virtual LoadType LoadType { get; set; }
-        public virtual Product Product { get; set; }
-        public virtual Truck Truck { get; set; }
     }
 }

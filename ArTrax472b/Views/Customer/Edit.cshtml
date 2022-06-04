@@ -2,25 +2,277 @@
 @{
     ViewBag.Title = "Customer Page - " + Model.CustomerName;
 }
-
-
-
 <script src="~/Scripts/_DataServiceCaller.js"></script>
 <script src="~/Scripts/_Index.js"></script>
-<script src="~/Scripts/_InvoiceHelper.js"></script>
-
-<div id="tabstrip">
-    <ul>
-        <li>Tab 1</li>
-        <li>Tab 2</li>
-    </ul>
-    <div>Content 1</div>
-    <div>Content 2</div>
-</div>
-
-<script>
-    var tabStrip = $("#tabstrip").kendoTabStrip().data("kendoTabStrip");
-    tabStrip.enable(tabStrip.tabGroup.children().eq(0), false);
-    tabStrip.enable(tabStrip.tabGroup.children().eq(0), true);
-</script>
  
+ 
+<div style="vertical-align: top; margin-left: 0px;">
+    <div id="tabstripMain">
+        <ul>
+            <li class="k-state-active">Tickets </li>
+            <li>Invoices</li>
+            <li>Customer Info</li>
+        </ul>
+        <div>
+            <input type="Button" value="New" onclick='newTicket();' style="width: 230px" class="k-button" />
+            <input type="Button" value="Refresh" onclick='loadOpenTickets();' class="k-button" />
+            <input id="txtStatus" class="hideField" />
+            <div id="dvCreateTicket"></div>
+            <div id="gridTickets" class="gridTickets"></div>
+        </div>
+        <div id="tab2">
+            <!-- Only load the report once the tab is clicked to make it more efficient -->
+            <input type="Button" onclick="btnCreateInvoice();" class="k-button" value="Create Invoice" />
+
+            <input type="Button" value="Refresh" onclick='loadInvoices();' class="k-button" />
+            &nbsp;&nbsp;&nbsp;&nbsp;Show All Invoices<input type="checkbox" name="chkShowAllInvoices" checked="checked" onchange="loadInvoices();" />
+            <div id="gridInvoices"></div>
+        </div>
+        <div id="tabCustomer">
+
+            <h2> Edit Customer</h2>
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+
+                <fieldset>
+                    <legend>Customer</legend>
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.CustomerName)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.CustomerName)
+                        @Html.ValidationMessageFor(model => model.CustomerName)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.AddressLine1)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.AddressLine1)
+                        @Html.ValidationMessageFor(model => model.AddressLine1)
+                    </div>
+
+
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.City)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.City)
+                        @Html.ValidationMessageFor(model => model.City)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Province)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Province)
+                        @Html.ValidationMessageFor(model => model.Province)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.MainContact)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.MainContact)
+                        @Html.ValidationMessageFor(model => model.MainContact)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.EmailAddress)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.EmailAddress)
+                        @Html.ValidationMessageFor(model => model.EmailAddress)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ReceiveInvoiceByEmail)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.ReceiveInvoiceByEmail)
+                        @Html.ValidationMessageFor(model => model.ReceiveInvoiceByEmail)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Phone)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Phone)
+                        @Html.ValidationMessageFor(model => model.Phone)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Cell)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Cell)
+                        @Html.ValidationMessageFor(model => model.Cell)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Fax)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Fax)
+                        @Html.ValidationMessageFor(model => model.Fax)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.TaxExempt)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.TaxExempt)
+                        @Html.ValidationMessageFor(model => model.TaxExempt)
+                    </div>
+                    <div class="hideField">
+                        @Html.EditorFor(model => model.CreatedOn)
+                    </div>
+
+                    <p>
+                        <input type="submit" value="Save" />
+                    </p>
+                </fieldset>
+            }
+        </div>
+
+    </div>
+</div>
+<script>
+     
+    var tabStrip = $("#tabstripMain").kendoTabStrip().data("kendoTabStrip");
+    tabStrip.enable(tabStrip.tabGroup.children().eq(0), true);
+    $(document).ready(function () {
+        console.log("document is ready");
+       //loadOpenTickets();
+       // loadInvoices();
+    });
+ 
+       
+       
+    function getCustomerId() {
+        return @Model.Id;
+    }
+
+</script>
+
+<script type="text/html" id="templTicket">
+    <table>
+        <tr>
+            <td colspan="2">
+                <input type="button" id="btnSaveTicket" value="Save" onclick="postEditTicket(); " />
+                <input type="text" id="txtTicketId" value="0" class="hideField" />
+            </td>
+        </tr>
+        <tr class="altRowColor">
+            <td>Date</td>
+            <td>
+                <input id="txtTicketCreate_Date" />
+            </td>
+        </tr>
+        <tr>
+            <td>Ticket No.</td>
+            <td>
+                <input type="text" id="txtTicketCreate_TicketNumber" value="${TicketNumber}" onchange="validateTicketNumber();" />
+            </td>
+        </tr>
+        <tr class="altRowColor">
+            <td>Truck</td>
+            <td>
+                <input id="cboTruck" />
+            </td>
+        </tr>
+        <tr>
+            <td>Equip</td>
+            <td>
+                <input id="cboEquip" />
+                @*<div id="cboEquip">
+                       <input type="radio" id="cboEquip1" name="cboEquip" /><label for="radio1">Choice 1</label>
+                       <input type="radio" id="cboEquip2" name="cboEquip" checked="checked" /><label for="radio2">Choice 2</label>
+                       <input type="radio" id="cboEquip3" name="cboEquip" /><label for="radio3">Choice 3</label>
+                    </div>*@
+            </td>
+        </tr>
+        <tr class="altRowColor">
+            <td>Type</td>
+            <td>
+                <input id="cboLoadType" />
+            </td>
+        </tr>
+        <tr>
+            <td>Product</td>
+            <td>
+                <input id="cboProduct" />
+            </td>
+        </tr>
+        <tr class="altRowColor">
+            <td>Description</td>
+            <td>
+                <input type="datetime" id="txtTicketCreate_Description" value="${Description}" />
+            </td>
+        </tr>
+        <tr>
+            <td>Quantity</td>
+            <td>
+                <input type="number" id="txtTicketCreate_Quantity" value="${Quantity}" />
+            </td>
+        </tr>
+        <tr class="altRowColor">
+            <td>Price</td>
+            <td>
+                <input type="number" id="txtTicketCreate_Price" value="${Price}" />
+            </td>
+        </tr>
+        <tr>
+            <td>Taxable</td>
+            <td>
+                <input type="checkbox" id="txtTicketCreate_Taxable" checked="${IsLineTaxable}" />
+            </td>
+        </tr>
+    </table>
+</script>
+
+
+<script type="text/html" id="templDeleteTicket">
+    <table>
+        <tr>
+            <td colspan="2">
+                <input type="button" id="btnDeleteTicket" value="Delete" onclick="postDeleteTicket(); " />
+                <input type="text" id="txtDeleteTicketId" value="${Id}" class="hideField" />
+            </td>
+        </tr>
+        <tr>
+            <td>Ticket No.</td>
+            <td>
+                <input type="text" value="${TicketNumber}" />
+            </td>
+        </tr>
+        <tr class="altRowColor">
+            <td>Description</td>
+            <td>
+                <input type="datetime" value="${Description}" />
+            </td>
+        </tr>
+        <tr>
+            <td>Quantity</td>
+            <td>
+                <input type="number" value="${Quantity}" />
+            </td>
+        </tr>
+        <tr class="altRowColor">
+            <td>Price</td>
+            <td>
+                <input type="number" value="${Price}" />
+            </td>
+        </tr>
+        <tr>
+            <td>Taxable</td>
+            <td>
+                <input type="checkbox" checked="${IsLineTaxable}" />
+            </td>
+        </tr>
+    </table>
+</script>

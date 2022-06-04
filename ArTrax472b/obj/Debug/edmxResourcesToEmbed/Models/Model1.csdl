@@ -50,10 +50,6 @@
     <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
     <Property Name="IsLineTaxable" Type="Boolean" Nullable="false" />
     <Property Name="UserField1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Equip" Relationship="Self.FK_dbo_InvoiceLines_dbo_Equips_EquipId" FromRole="InvoiceLines" ToRole="Equips" />
-    <NavigationProperty Name="LoadType" Relationship="Self.FK_dbo_InvoiceLines_dbo_LoadTypes_LoadTypeId" FromRole="InvoiceLines" ToRole="LoadTypes" />
-    <NavigationProperty Name="Product" Relationship="Self.FK_dbo_InvoiceLines_dbo_Products_ProductId" FromRole="InvoiceLines" ToRole="Products" />
-    <NavigationProperty Name="Truck" Relationship="Self.FK_dbo_InvoiceLines_dbo_Trucks_TruckId" FromRole="InvoiceLines" ToRole="Trucks" />
   </EntityType>
   <EntityType Name="InvoicePayment">
     <Key>
