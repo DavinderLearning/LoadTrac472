@@ -14,18 +14,9 @@ namespace ArTrax472b.Models
     
     public partial class Truck
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Truck()
-        {
-            this.InvoiceLines = new HashSet<InvoiceLine>();
-        }
-    
         public int Id { get; set; }
         public string Name { get; set; }
         public string ShortCode { get; set; }
         public bool IsContractor { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InvoiceLine> InvoiceLines { get; set; }
     }
 }

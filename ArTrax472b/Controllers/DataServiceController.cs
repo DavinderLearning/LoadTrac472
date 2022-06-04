@@ -6,6 +6,7 @@
 
 using ArTrax472b.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -25,11 +26,11 @@ namespace ArTrax472.Controllers
         {
             return Json(db.Products.ToList(), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult GetEquips()
-        {
+        public ActionResult GetEquips()
+        {             
             return Json(db.Equips.ToList(), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult GetLoadTypes()
+        public ActionResult GetLoadTypes()
         {
             return Json(db.LoadTypes.ToList(), JsonRequestBehavior.AllowGet);
         }

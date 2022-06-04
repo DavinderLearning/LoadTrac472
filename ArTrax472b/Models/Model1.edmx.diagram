@@ -15,10 +15,7 @@
         <EntityTypeShape EntityType="ArTraxTraxDbModel.SystemSetting" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ArTraxTraxDbModel.TaxRate" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ArTraxTraxDbModel.Truck" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
-        <AssociationConnector Association="ArTraxTraxDbModel.FK_dbo_InvoiceLines_dbo_Equips_EquipId" ManuallyRouted="false" />
-        <AssociationConnector Association="ArTraxTraxDbModel.FK_dbo_InvoiceLines_dbo_LoadTypes_LoadTypeId" ManuallyRouted="false" />
-        <AssociationConnector Association="ArTraxTraxDbModel.FK_dbo_InvoiceLines_dbo_Products_ProductId" ManuallyRouted="false" />
-        <AssociationConnector Association="ArTraxTraxDbModel.FK_dbo_InvoiceLines_dbo_Trucks_TruckId" ManuallyRouted="false" />
+      
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
