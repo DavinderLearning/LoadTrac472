@@ -19,136 +19,131 @@ using System.Web.Mvc;
 
 namespace ArTrax41.Controllers
 {
-  [Authorize(Roles = "TICKETENTRY")]
-  public class InvoiceLineController : Controller
-  {
+    [Authorize(Roles = "TICKETENTRY")]
+    public class InvoiceLineController : Controller
+    {
         private ArTraxTraxDbEntities db = new ArTraxTraxDbEntities();
-
-    //    public ActionResult New() => (ActionResult) this.Json((object) new InvoiceLine()
-    //{
-    //  ProductId = 1,
-    //  TicketNumber = ""
-    //}, (JsonRequestBehavior) 0);
-
-    public ActionResult New()
+        public ActionResult New()
         {
-            InvoiceLine invoiceLine = new InvoiceLine { InvoiceId = 0, ProductId = 1, TicketNumber = "",TicketDate=DateTime.Now.Date };
+            InvoiceLine invoiceLine = new InvoiceLine { InvoiceId = 0, ProductId = 1, TicketNumber = "", TicketDate = DateTime.Now.Date };
             List<InvoiceLine> invoiceLines = new List<InvoiceLine>();
             invoiceLines.Add(invoiceLine);
-            return Json(invoiceLines.ToList(),JsonRequestBehavior.AllowGet);
+            return Json(invoiceLines.ToList(), JsonRequestBehavior.AllowGet);
         }
-    [HttpPost]
-    public int CreateJ(InvoiceLine invoiceline)
-    {
-      this.db.InvoiceLines.Add(invoiceline);
-      ((DbContext) this.db).SaveChanges();
-      //AuditLogHandler.RecordAuditLogEntry(invoiceline.Id, "InvoiceLine", "Create", (Controller) this);
-      return invoiceline.Id;
-    }
+        public ActionResult Get(int pId)
+        {
 
-    //[HttpPost]
-    //public string ValidateTicketNumber(InvoiceLine pLine)
-    //{
-    //  // ISSUE: object of a compiler-generated type is created
-    //  // ISSUE: variable of a compiler-generated type
-    //  InvoiceLineController.\u003C\u003Ec__DisplayClass0 cDisplayClass0 = new InvoiceLineController.\u003C\u003Ec__DisplayClass0();
-    //  // ISSUE: reference to a compiler-generated field
-    //  cDisplayClass0.pLine = pLine;
-    //  ParameterExpression parameterExpression;
-    //  // ISSUE: method reference
-    //  // ISSUE: method reference
-    //  // ISSUE: field reference
-    //  // ISSUE: method reference
-    //  // ISSUE: method reference
-    //  // ISSUE: field reference
-    //  // ISSUE: method reference
-    //  return ((IQueryable<InvoiceLine>) this.db.InvoiceLines).Where<InvoiceLine>(Expression.Lambda<Func<InvoiceLine, bool>>((Expression) Expression.AndAlso((Expression) Expression.Call((Expression) Expression.Property((Expression) parameterExpression, (MethodInfo) MethodBase.GetMethodFromHandle(__methodref (InvoiceLine.get_TicketNumber))), (MethodInfo) MethodBase.GetMethodFromHandle(__methodref (string.Equals)), (Expression) Expression.Property((Expression) Expression.Field((Expression) Expression.Constant((object) cDisplayClass0), FieldInfo.GetFieldFromHandle(__fieldref (InvoiceLineController.\u003C\u003Ec__DisplayClass0.pLine))), (MethodInfo) MethodBase.GetMethodFromHandle(__methodref (InvoiceLine.get_TicketNumber)))), (Expression) Expression.Equal((Expression) Expression.Property((Expression) parameterExpression, (MethodInfo) MethodBase.GetMethodFromHandle(__methodref (InvoiceLine.get_CustomerId))), (Expression) Expression.Property((Expression) Expression.Field((Expression) Expression.Constant((object) cDisplayClass0), FieldInfo.GetFieldFromHandle(__fieldref (InvoiceLineController.\u003C\u003Ec__DisplayClass0.pLine))), (MethodInfo) MethodBase.GetMethodFromHandle(__methodref (InvoiceLine.get_CustomerId))))), parameterExpression)).Count<InvoiceLine>() > 0 ? "This ticket number has already been used." : "";
-    //}
+            List<InvoiceLine> invoiceLines = new List<InvoiceLine>();
+            invoiceLines.Add(db.InvoiceLines.Find(pId));
+            return Json(invoiceLines, JsonRequestBehavior.AllowGet);
+        }
+        //public ActionResult Get(int pId) => (ActionResult)this.Json((object)this.db.InvoiceLines.Find(new object[1]
+        //  {
+        //      (object) pId
+        //  }), (JsonRequestBehavior)0);
 
-    public ActionResult Get(int pId) => (ActionResult) this.Json((object) this.db.InvoiceLines.Find(new object[1]
-    {
-      (object) pId
-    }), (JsonRequestBehavior) 0);
 
-    [HttpPost]
-    public void EditJ(InvoiceLine invoiceline)
-    {
-      ((DbContext) this.db).Entry<InvoiceLine>(invoiceline).State = EntityState.Modified;
-      ((DbContext) this.db).SaveChanges();
-    }
+        [HttpPost]
+        public int CreateJ(InvoiceLine invoiceline)
+        {
+            this.db.InvoiceLines.Add(invoiceline);
+            ((DbContext)this.db).SaveChanges();
+            //AuditLogHandler.RecordAuditLogEntry(invoiceline.Id, "InvoiceLine", "Create", (Controller) this);
+            return invoiceline.Id;
+        }
+
+        [HttpPost]
+        public string ValidateTicketNumber(InvoiceLine pLine)
+        {
+            int items = db.InvoiceLines.Where(p => p.CustomerId == pLine.CustomerId && p.TicketNumber.ToUpper() == pLine.TicketNumber.ToUpper()).Count();
+            if (items > 0)
+            {
+                return $"TicketNumber {pLine.TicketNumber}aleady exits for this customer";
+            }
+            else
+                return "";
+        }
+
+      
+        [HttpPost]
+        public void EditJ(InvoiceLine invoiceline)
+        {
+            ((DbContext)this.db).Entry<InvoiceLine>(invoiceline).State = EntityState.Modified;
+            ((DbContext)this.db).SaveChanges();
+        }
 
         public ActionResult GetOpenTickets(int CustomerId)
         {
-            return Json(this.db.InvoiceLines.Where(x =>x.CustomerId==CustomerId && x.InvoiceId==0).ToList(), JsonRequestBehavior.AllowGet);
-        } 
+            return Json(this.db.InvoiceLines.Where(x => x.CustomerId == CustomerId && x.InvoiceId == 0).ToList(), JsonRequestBehavior.AllowGet);
+        }
 
-    [HttpPost]
-    public void AddLineToInvoice(InvoiceLine pLine)
-    {
-      this.db.InvoiceLines.Find(new object[1]
-      {
-        (object) pLine.Id
-      }).InvoiceId = pLine.InvoiceId;
-      ((DbContext) this.db).SaveChanges();
-    }
-
-    [HttpPost]
-    public void RemoveLineFromInvoice(InvoiceLine pLine)
-    {
-      this.db.InvoiceLines.Find(new object[1]
-      {
-        (object) pLine.Id
-      }).InvoiceId = 0;
-      ((DbContext) this.db).SaveChanges();
-    }
-    public ActionResult Details(int id = 0)
-    {
-      InvoiceLine invoiceLine = this.db.InvoiceLines.Find(new object[1]
-      {
-        (object) id
-      });
-      return invoiceLine == null ? (ActionResult) this.HttpNotFound() : (ActionResult) this.View((object) invoiceLine);
-    }
-
-    public ActionResult CreateM2(int pCustomerId, int pTruckId)
-    { 
-            return (ActionResult) this.View((object) new InvoiceLine()
-      {
-        CustomerId = pCustomerId,
-        IsLineTaxable = true,
-        TicketDate = DateTime.Now.Date,
-        Price = 0M,
-        TruckId = pTruckId,
-        ProductId = 1
-      });
-    }
-
-    [HttpPost]
-    public ActionResult CreateM2(InvoiceLine invoiceline)
-    {
-      invoiceline.ProductId = 1;
-      if (this.ModelState.IsValid)
-      {
-        this.db.InvoiceLines.Add(invoiceline);
-        ((DbContext) this.db).SaveChanges();
-        //AuditLogHandler.RecordAuditLogEntry(invoiceline.Id, "InvoiceLine", "Create", (Controller) this);
-        return (ActionResult) this.RedirectToAction("Create", "InvoiceLine", (object) new
+        [HttpPost]
+        public void AddLineToInvoice(InvoiceLine pLine)
         {
-          pCustomerId = invoiceline.CustomerId
-        });
-      }
-      // ISSUE: reference to a compiler-generated field
-      return (ActionResult) this.View((object) invoiceline);
-    }
+            this.db.InvoiceLines.Find(new object[1]
+            {
+        (object) pLine.Id
+            }).InvoiceId = pLine.InvoiceId;
+            ((DbContext)this.db).SaveChanges();
+        }
 
-     
+        [HttpPost]
+        public void RemoveLineFromInvoice(InvoiceLine pLine)
+        {
+            this.db.InvoiceLines.Find(new object[1]
+            {
+        (object) pLine.Id
+            }).InvoiceId = 0;
+            ((DbContext)this.db).SaveChanges();
+        }
+        public ActionResult Details(int id = 0)
+        {
+            InvoiceLine invoiceLine = this.db.InvoiceLines.Find(new object[1]
+            {
+        (object) id
+            });
+            return invoiceLine == null ? (ActionResult)this.HttpNotFound() : (ActionResult)this.View((object)invoiceLine);
+        }
 
-     
- 
-    protected virtual void Dispose(bool disposing)
-    {
-      ((DbContext) this.db).Dispose();
-      base.Dispose(disposing);
+        public ActionResult CreateM2(int pCustomerId, int pTruckId)
+        {
+            return (ActionResult)this.View((object)new InvoiceLine()
+            {
+                CustomerId = pCustomerId,
+                IsLineTaxable = true,
+                TicketDate = DateTime.Now.Date,
+                Price = 0M,
+                TruckId = pTruckId,
+                ProductId = 1
+            });
+        }
+
+        [HttpPost]
+        public ActionResult CreateM2(InvoiceLine invoiceline)
+        {
+            invoiceline.ProductId = 1;
+            if (this.ModelState.IsValid)
+            {
+                this.db.InvoiceLines.Add(invoiceline);
+                ((DbContext)this.db).SaveChanges();
+                //AuditLogHandler.RecordAuditLogEntry(invoiceline.Id, "InvoiceLine", "Create", (Controller) this);
+                return (ActionResult)this.RedirectToAction("Create", "InvoiceLine", (object)new
+                {
+                    pCustomerId = invoiceline.CustomerId
+                });
+            }
+            // ISSUE: reference to a compiler-generated field
+            return (ActionResult)this.View((object)invoiceline);
+        }
+
+
+
+
+
+        protected virtual void Dispose(bool disposing)
+        {
+            ((DbContext)this.db).Dispose();
+            base.Dispose(disposing);
+        }
     }
-  }
 }
