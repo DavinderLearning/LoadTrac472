@@ -7,7 +7,6 @@
       <Diagram DiagramId="42a4d7a9beb34b6b9ac5a3a0806e391e" Name="Diagram1">
         <EntityTypeShape EntityType="ArTraxTraxDbModel.Customer" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ArTraxTraxDbModel.Equip" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ArTraxTraxDbModel.InvoiceLine" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ArTraxTraxDbModel.InvoicePayment" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ArTraxTraxDbModel.Invoice" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ArTraxTraxDbModel.LoadType" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
@@ -15,6 +14,11 @@
         <EntityTypeShape EntityType="ArTraxTraxDbModel.SystemSetting" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ArTraxTraxDbModel.TaxRate" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ArTraxTraxDbModel.Truck" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArTraxTraxDbModel.InvoiceLine" Width="1.5" PointX="3" PointY="1.125" />
+        <AssociationConnector Association="ArTraxTraxDbModel.FK_dbo_InvoiceLines_dbo_Equips_EquipId" />
+        <AssociationConnector Association="ArTraxTraxDbModel.FK_dbo_InvoiceLines_dbo_LoadTypes_LoadTypeId" />
+        <AssociationConnector Association="ArTraxTraxDbModel.FK_dbo_InvoiceLines_dbo_Products_ProductId" />
+        <AssociationConnector Association="ArTraxTraxDbModel.FK_dbo_InvoiceLines_dbo_Trucks_TruckId" />
       
       </Diagram>
     </edmx:Diagrams>

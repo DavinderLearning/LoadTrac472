@@ -34,27 +34,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="InvoiceLines">
-      <EntityTypeMapping TypeName="ArTraxTraxDbModel.InvoiceLine">
-        <MappingFragment StoreEntitySet="InvoiceLines">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
-          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-          <ScalarProperty Name="EquipId" ColumnName="EquipId" />
-          <ScalarProperty Name="LoadTypeId" ColumnName="LoadTypeId" />
-          <ScalarProperty Name="TruckId" ColumnName="TruckId" />
-          <ScalarProperty Name="AddToInvoice" ColumnName="AddToInvoice" />
-          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-          <ScalarProperty Name="TicketDate" ColumnName="TicketDate" />
-          <ScalarProperty Name="TicketNumber" ColumnName="TicketNumber" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="IsLineTaxable" ColumnName="IsLineTaxable" />
-          <ScalarProperty Name="UserField1" ColumnName="UserField1" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="InvoicePayments">
       <EntityTypeMapping TypeName="ArTraxTraxDbModel.InvoicePayment">
         <MappingFragment StoreEntitySet="InvoicePayments">
@@ -141,6 +120,27 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ShortCode" ColumnName="ShortCode" />
           <ScalarProperty Name="IsContractor" ColumnName="IsContractor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoiceLines">
+      <EntityTypeMapping TypeName="ArTraxTraxDbModel.InvoiceLine">
+        <MappingFragment StoreEntitySet="InvoiceLines">
+          <ScalarProperty Name="UserField1" ColumnName="UserField1" />
+          <ScalarProperty Name="IsLineTaxable" ColumnName="IsLineTaxable" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="TicketNumber" ColumnName="TicketNumber" />
+          <ScalarProperty Name="TicketDate" ColumnName="TicketDate" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="AddToInvoice" ColumnName="AddToInvoice" />
+          <ScalarProperty Name="TruckId" ColumnName="TruckId" />
+          <ScalarProperty Name="LoadTypeId" ColumnName="LoadTypeId" />
+          <ScalarProperty Name="EquipId" ColumnName="EquipId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

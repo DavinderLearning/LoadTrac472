@@ -27,7 +27,6 @@ namespace ArTrax472b.Models
     
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Equip> Equips { get; set; }
-        public virtual DbSet<InvoiceLine> InvoiceLines { get; set; }
         public virtual DbSet<InvoicePayment> InvoicePayments { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<LoadType> LoadTypes { get; set; }
@@ -35,5 +34,6 @@ namespace ArTrax472b.Models
         public virtual DbSet<SystemSetting> SystemSettings { get; set; }
         public virtual DbSet<TaxRate> TaxRates { get; set; }
         public virtual DbSet<Truck> Trucks { get; set; }
+        public virtual DbSet<InvoiceLine> InvoiceLines { get; set; }
     }
 }

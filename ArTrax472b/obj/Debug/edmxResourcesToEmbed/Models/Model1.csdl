@@ -31,26 +31,6 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="InvoiceLine">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="InvoiceId" Type="Int32" Nullable="false" />
-    <Property Name="CustomerId" Type="Int32" Nullable="false" />
-    <Property Name="EquipId" Type="Int32" Nullable="false" />
-    <Property Name="LoadTypeId" Type="Int32" Nullable="false" />
-    <Property Name="TruckId" Type="Int32" Nullable="false" />
-    <Property Name="AddToInvoice" Type="Boolean" Nullable="false" />
-    <Property Name="ProductId" Type="Int32" Nullable="false" />
-    <Property Name="TicketDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="TicketNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="IsLineTaxable" Type="Boolean" Nullable="false" />
-    <Property Name="UserField1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-  </EntityType>
   <EntityType Name="InvoicePayment">
     <Key>
       <PropertyRef Name="Id" />
@@ -133,66 +113,9 @@
     <Property Name="ShortCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="IsContractor" Type="Boolean" Nullable="false" />
   </EntityType>
-  <Association Name="FK_dbo_InvoiceLines_dbo_Equips_EquipId">
-    <End Role="Equips" Type="Self.Equip" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="InvoiceLines" Type="Self.InvoiceLine" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Equips">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="InvoiceLines">
-        <PropertyRef Name="EquipId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_InvoiceLines_dbo_LoadTypes_LoadTypeId">
-    <End Role="LoadTypes" Type="Self.LoadType" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="InvoiceLines" Type="Self.InvoiceLine" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LoadTypes">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="InvoiceLines">
-        <PropertyRef Name="LoadTypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_InvoiceLines_dbo_Products_ProductId">
-    <End Role="Products" Type="Self.Product" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="InvoiceLines" Type="Self.InvoiceLine" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Products">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="InvoiceLines">
-        <PropertyRef Name="ProductId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_InvoiceLines_dbo_Trucks_TruckId">
-    <End Role="Trucks" Type="Self.Truck" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="InvoiceLines" Type="Self.InvoiceLine" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Trucks">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="InvoiceLines">
-        <PropertyRef Name="TruckId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="ArTraxTraxDbEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Customers" EntityType="Self.Customer" />
     <EntitySet Name="Equips" EntityType="Self.Equip" />
-    <EntitySet Name="InvoiceLines" EntityType="Self.InvoiceLine" />
     <EntitySet Name="InvoicePayments" EntityType="Self.InvoicePayment" />
     <EntitySet Name="Invoices" EntityType="Self.Invoice" />
     <EntitySet Name="LoadTypes" EntityType="Self.LoadType" />
@@ -200,21 +123,102 @@
     <EntitySet Name="SystemSettings" EntityType="Self.SystemSetting" />
     <EntitySet Name="TaxRates" EntityType="Self.TaxRate" />
     <EntitySet Name="Trucks" EntityType="Self.Truck" />
-    <AssociationSet Name="FK_dbo_InvoiceLines_dbo_Equips_EquipId" Association="Self.FK_dbo_InvoiceLines_dbo_Equips_EquipId">
-      <End Role="Equips" EntitySet="Equips" />
-      <End Role="InvoiceLines" EntitySet="InvoiceLines" />
+    <EntitySet Name="InvoiceLines" EntityType="ArTraxTraxDbModel.InvoiceLine" />
+    <AssociationSet Name="FK_dbo_InvoiceLines_dbo_Equips_EquipId" Association="ArTraxTraxDbModel.FK_dbo_InvoiceLines_dbo_Equips_EquipId">
+      <End Role="Equip" EntitySet="Equips" />
+      <End Role="InvoiceLine" EntitySet="InvoiceLines" />
     </AssociationSet>
-    <AssociationSet Name="FK_dbo_InvoiceLines_dbo_LoadTypes_LoadTypeId" Association="Self.FK_dbo_InvoiceLines_dbo_LoadTypes_LoadTypeId">
-      <End Role="LoadTypes" EntitySet="LoadTypes" />
-      <End Role="InvoiceLines" EntitySet="InvoiceLines" />
+    <AssociationSet Name="FK_dbo_InvoiceLines_dbo_LoadTypes_LoadTypeId" Association="ArTraxTraxDbModel.FK_dbo_InvoiceLines_dbo_LoadTypes_LoadTypeId">
+      <End Role="LoadType" EntitySet="LoadTypes" />
+      <End Role="InvoiceLine" EntitySet="InvoiceLines" />
     </AssociationSet>
-    <AssociationSet Name="FK_dbo_InvoiceLines_dbo_Products_ProductId" Association="Self.FK_dbo_InvoiceLines_dbo_Products_ProductId">
-      <End Role="Products" EntitySet="Products" />
-      <End Role="InvoiceLines" EntitySet="InvoiceLines" />
+    <AssociationSet Name="FK_dbo_InvoiceLines_dbo_Products_ProductId" Association="ArTraxTraxDbModel.FK_dbo_InvoiceLines_dbo_Products_ProductId">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="InvoiceLine" EntitySet="InvoiceLines" />
     </AssociationSet>
-    <AssociationSet Name="FK_dbo_InvoiceLines_dbo_Trucks_TruckId" Association="Self.FK_dbo_InvoiceLines_dbo_Trucks_TruckId">
-      <End Role="Trucks" EntitySet="Trucks" />
-      <End Role="InvoiceLines" EntitySet="InvoiceLines" />
+    <AssociationSet Name="FK_dbo_InvoiceLines_dbo_Trucks_TruckId" Association="ArTraxTraxDbModel.FK_dbo_InvoiceLines_dbo_Trucks_TruckId">
+      <End Role="Truck" EntitySet="Trucks" />
+      <End Role="InvoiceLine" EntitySet="InvoiceLines" />
     </AssociationSet>
   </EntityContainer>
+  <EntityType Name="InvoiceLine">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceId" Type="Int32" Nullable="false" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="EquipId" Type="Int32" Nullable="false" />
+    <Property Name="LoadTypeId" Type="Int32" Nullable="false" />
+    <Property Name="TruckId" Type="Int32" Nullable="false" />
+    <Property Name="AddToInvoice" Type="Boolean" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="TicketDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TicketNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="IsLineTaxable" Type="Boolean" Nullable="false" />
+    <Property Name="UserField1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Equip" Relationship="ArTraxTraxDbModel.FK_dbo_InvoiceLines_dbo_Equips_EquipId" FromRole="InvoiceLine" ToRole="Equip" />
+    <NavigationProperty Name="LoadType" Relationship="ArTraxTraxDbModel.FK_dbo_InvoiceLines_dbo_LoadTypes_LoadTypeId" FromRole="InvoiceLine" ToRole="LoadType" />
+    <NavigationProperty Name="Product" Relationship="ArTraxTraxDbModel.FK_dbo_InvoiceLines_dbo_Products_ProductId" FromRole="InvoiceLine" ToRole="Product" />
+    <NavigationProperty Name="Truck" Relationship="ArTraxTraxDbModel.FK_dbo_InvoiceLines_dbo_Trucks_TruckId" FromRole="InvoiceLine" ToRole="Truck" />
+  </EntityType>
+  <Association Name="FK_dbo_InvoiceLines_dbo_Equips_EquipId">
+    <End Type="ArTraxTraxDbModel.Equip" Role="Equip" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ArTraxTraxDbModel.InvoiceLine" Role="InvoiceLine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equip">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InvoiceLine">
+        <PropertyRef Name="EquipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_InvoiceLines_dbo_LoadTypes_LoadTypeId">
+    <End Type="ArTraxTraxDbModel.LoadType" Role="LoadType" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ArTraxTraxDbModel.InvoiceLine" Role="InvoiceLine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoadType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InvoiceLine">
+        <PropertyRef Name="LoadTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_InvoiceLines_dbo_Products_ProductId">
+    <End Type="ArTraxTraxDbModel.Product" Role="Product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ArTraxTraxDbModel.InvoiceLine" Role="InvoiceLine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InvoiceLine">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_InvoiceLines_dbo_Trucks_TruckId">
+    <End Type="ArTraxTraxDbModel.Truck" Role="Truck" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ArTraxTraxDbModel.InvoiceLine" Role="InvoiceLine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Truck">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InvoiceLine">
+        <PropertyRef Name="TruckId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

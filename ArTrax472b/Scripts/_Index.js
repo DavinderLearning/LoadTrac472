@@ -44,7 +44,35 @@ function loadOpenTickets() {
 }
 function loadOpenTicketsCallback(data) {    
         $("#gridTickets").kendoGrid({
-        dataSource: data 
+            dataSource: data,
+             columns: [
+                {
+                    field: "Id",
+                    title: "",
+                    width: 60,
+                    template: "<div class='k-button k-grid-edit' onclick=editTicket(#= kendo.toString(Id)#)  style='min-width:16px;'><span class='k-icon k-edit'></span></div>"
+                }
+                , {
+                    field: "Id",
+                    title: " ",
+                    width: 60,
+                    template: "<div class='k-button k-grid-delete' onclick=deleteTicket(#= kendo.toString(Id)#)  style='min-width:16px;'><span class='k-icon k-delete'></span></div>"
+                }
+                , {
+                    field: "TicketDate", title: "Date"
+                    , width: 120
+                    , template: '#= kendo.toString(new Date(parseInt(TicketDate.replace(/[A-Za-z$--/]/g, ""))),"MM/dd/yyyy") #'
+                }
+                , { field: "TicketNumber", title: "Ticket#" }
+                , { field: "Truck.Name", title: "Truck", width: 100 }
+                , { field: "LoadType.Name", title: "Type", width: 120 }
+                , { field: "Equip.Name", title: "Equip", width: 100 }
+                , { field: "Product.Name", title: "Product" }
+                , { field: "Description", title: "Desc" }
+                , { field: "Quantity", title: "Qty", format: "{0:n}", width: 100 }
+                , { field: "Price", title: "Price", format: "{0:c}", width: 100 }
+                , { field: "ExtendedAmount", title: "Total", format: "{0:c}", width: 110 }
+            ]
     }).data("kendoGrid");
     //alert(data.length);
    // invoiceLinesAvailableData = data;
