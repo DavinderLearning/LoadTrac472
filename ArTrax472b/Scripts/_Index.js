@@ -38,8 +38,8 @@ function newTicket() {
 
 function loadOpenTickets() {
      var i = getCustomerId();
-    //var url = "/InvoiceLine/GetOpenTickets?CustomerId=" + i + "";
-    var url = "/InvoiceLine/GetOpenTickets?CustomerId=252";
+    var url = "/InvoiceLine/GetOpenTickets?CustomerId=" + i + "";
+    //var url = "/InvoiceLine/GetOpenTickets?CustomerId=252";
     getData(url, loadOpenTicketsCallback);
 }
 function loadOpenTicketsCallback(data) {    
@@ -92,42 +92,18 @@ function editTicket(pTicketId) {
 //using the templating in Jquery
 function viewTicketWindowCallback(data) {
     //clear the div where template is being appended
-    $("#dvCreateTicket").empty();
+    //$("#dvCreateTicket").empty();
     //append the template
+    var templateContent = $("#templTicket").html();
+    var template = kendo.template(templateContent);
+    var result = kendo.render(template, data); //render the template
+    $("#dvCreateTicket").html(result); //append the result to the page
+    console.log("data coming is: " + data);
+
+    console.log("result is: " + result);
+
     $("#templTicket").tmpl(data).appendTo("#dvCreateTicket");
-    //load the dropdowns into the new div with templated fields
-    loadKendoDropdown(selectTrucks, "#cboTruck", "Name", "Id");
-    cboTruck.value = data.TruckId;
-    setDropdownValue("#cboTruck", data.TruckId);
-
-    loadKendoDropdown(selectLoadTypes, "#cboLoadType", "Name", "Id");
-    setDropdownValue("#cboLoadType", data.LoadTypeId);
-
-   loadKendoDropdown(selectEquips, "#cboEquip", "Name", "Id");
-   setDropdownValue("#cboEquip", data.EquipId);
-
-    $("#cboEquip").buttonset();
-
-    loadKendoDropdown(selectProducts, "#cboProduct", "Name", "Id");
-    setDropdownValue("#cboProduct", data.ProductId);
-
-    txtTicketId.value = data.Id;
-    $("#txtTicketCreate_Date").kendoDatePicker();
-
-    var title = "Ticket Entry: <New Ticket>"
-    if (blnIsEditMode) {
-        title = "Ticket Entry: <Editing Ticket Id: " + data.Id + ">"
-        //set the invoiceId for saving the ticket
-        invoiceId = data.InvoiceId;
-        //set the datepicker default value
-        txtTicketCreate_Date.value = formatJSONDate(data.TicketDate);
-
-    }
-    else {
-        //new ticket window opening
-       // loadOpenTickets();
-    }
-    openModalWindow("#dvCreateTicket", title);
+      
 }
 function postEditTicket() {
     var url = "/InvoiceLine/CreateJ";

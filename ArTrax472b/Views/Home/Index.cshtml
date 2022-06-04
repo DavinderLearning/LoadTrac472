@@ -22,7 +22,7 @@
             {
                 field: "TicketNumber",
                 title: "TIck"
-            }] 
+            }]
         });
     });
 
@@ -37,6 +37,111 @@
         }).data("kendoGrid");
         //alert(data.length);
         // invoiceLinesAvailableData = data;
+    };
+
+</script>
+
+<ul id="users"></ul>
+
+<script type="text/x-kendo-template" id="myTemplate">
+    #if(isAdmin){#
+        <li>#: name # is Admin</li>
+    #}else{#
+        <li>#: name # is User</li>
+    #}#
+</script>
+
+<script type="text/javascript">
+    var templateContent = $("#myTemplate").html();
+    var template = kendo.template(templateContent);
+
+    //Create some dummy data
+    var data = [
+        { name: "John", isAdmin: false },
+        { name: "Alex", isAdmin: true }
+    ];
+    var result = kendo.render(template, data); //render the template
+    $("#users").html(result); //append the result to the page
+</script>
+
+
+<div id="dvCreateTicket"></div>
+<script type="text/html" id="templTicket">
+    <table>
+        <tr>
+            <td colspan="2">
+                <input type="button" id="btnSaveTicket" value="Save" onclick="postEditTicket(); " />
+                <input type="text" id="txtTicketId" value="0" class="hideField" />
+            </td>
+        </tr>
+        <tr class="altRowColor">
+            <td>Date</td>
+            <td>
+                <input id="txtTicketCreate_Date" />
+            </td>
+        </tr>
+        <tr>
+            <td>Ticket No.</td>
+            <td>
+                <input type="text" id="txtTicketCreate_TicketNumber" value="${TicketNumber}" onchange="validateTicketNumber();" />
+            </td>
+        </tr>
+        <tr class="altRowColor">
+            <td>Truck</td>
+            <td>
+                <input id="cboTruck" />
+            </td>
+        </tr>
+        <tr>
+            <td>Equip</td>
+            <td>
+                <input id="cboEquip" />
+                @*<div id="cboEquip">
+                       <input type="radio" id="cboEquip1" name="cboEquip" /><label for="radio1">Choice 1</label>
+                       <input type="radio" id="cboEquip2" name="cboEquip" checked="checked" /><label for="radio2">Choice 2</label>
+                       <input type="radio" id="cboEquip3" name="cboEquip" /><label for="radio3">Choice 3</label>
+                    </div>*@
+            </td>
+        </tr>
+        <tr class="altRowColor">
+            <td>Type</td>
+            <td>
+                <input id="cboLoadType" />
+            </td>
+        </tr>
+        <tr>
+            <td>Product</td>
+            <td>
+                <input id="cboProduct" />
+            </td>
+        </tr>
+         
+    </table>
+</script>
+<script>
+    var url = "/InvoiceLine/New";
+    getData(url, viewTicketWindowCallback);
+
+    function viewTicketWindowCallback(paramData) {
+        console.log("paramData is:" + paramData);
+        var templateContent = $("#templTicket").html();
+        var template = kendo.template(templateContent);
+
+        //Create some dummy data
+        var data = [
+            { ticketNumber: "John", isAdmin: false },
+            { ticketNumber: "Alex", isAdmin: true }
+        ];
+        var dataMy = [
+            { TicketNumber: "John", isAdmin: false },
+            { TicketNumber: "Alex", isAdmin: true }
+        ];
+
+        var dataMy2 = [{ "Id": 0, "TicketNumber": "BDDD23323" }];
+
+        var result = kendo.render(template, paramData); //render the template
+        $("#dvCreateTicket").html(result); //append the result to the page
+        console.log("done result is:" + result);
     };
 
 </script>

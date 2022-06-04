@@ -24,12 +24,19 @@ namespace ArTrax41.Controllers
   {
         private ArTraxTraxDbEntities db = new ArTraxTraxDbEntities();
 
-        public ActionResult New() => (ActionResult) this.Json((object) new InvoiceLine()
-    {
-      ProductId = 1,
-      TicketNumber = ""
-    }, (JsonRequestBehavior) 0);
+    //    public ActionResult New() => (ActionResult) this.Json((object) new InvoiceLine()
+    //{
+    //  ProductId = 1,
+    //  TicketNumber = ""
+    //}, (JsonRequestBehavior) 0);
 
+    public ActionResult New()
+        {
+            InvoiceLine invoiceLine = new InvoiceLine { InvoiceId = 0, ProductId = 1, TicketNumber = "VV",TicketDate=DateTime.Now.Date };
+            List<InvoiceLine> invoiceLines = new List<InvoiceLine>();
+            invoiceLines.Add(invoiceLine);
+            return Json(invoiceLines.ToList(),JsonRequestBehavior.AllowGet);
+        }
     [HttpPost]
     public int CreateJ(InvoiceLine invoiceline)
     {
@@ -72,7 +79,7 @@ namespace ArTrax41.Controllers
 
         public ActionResult GetOpenTickets(int CustomerId)
         {
-            return Json(this.db.InvoiceLines.Take(5).ToList(), JsonRequestBehavior.AllowGet);
+            return Json(this.db.InvoiceLines.Where(x =>x.CustomerId==CustomerId && x.InvoiceId==0).ToList(), JsonRequestBehavior.AllowGet);
         } 
 
     [HttpPost]
