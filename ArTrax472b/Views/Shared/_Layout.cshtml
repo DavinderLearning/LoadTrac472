@@ -21,26 +21,12 @@
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Load Trac</p>
-        </footer>
-    </div>
 
-    <div id="tabstrip">
-        <ul>
-            <li>First tab</li>
-            <li>Second tab</li>
-        </ul>
-        <div>First tab content</div>
-        <div>Second tab content</div>
-    </div>
 
-    <script>
-        $(document).ready(function () {
-            $("#tabstrip").kendoTabStrip();
-        });
-    </script>
-    @RenderSection("scripts", required: false)
+
+
+
+        @RenderSection("scripts", required: false)
+    </div>
 </body>
 </html>

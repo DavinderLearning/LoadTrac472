@@ -253,6 +253,11 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\images\ajax-loader.gif" />
+    <Content Include="Content\images\icons-18-black.png" />
+    <Content Include="Content\images\icons-18-white.png" />
+    <Content Include="Content\images\icons-36-black.png" />
+    <Content Include="Content\images\icons-36-white.png" />
     <Content Include="Content\kendo\2012.3.1114\Black\editor.png" />
     <Content Include="Content\kendo\2012.3.1114\Black\imagebrowser.png" />
     <Content Include="Content\kendo\2012.3.1114\Black\loading-image.gif" />

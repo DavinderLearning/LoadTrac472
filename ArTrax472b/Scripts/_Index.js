@@ -116,9 +116,9 @@ function viewTicketWindowCallback(data) {
         txtTicketId.value = data[0].Id;
         $("#txtTicketCreate_Date").kendoDatePicker();
 
-        var title = "Ticket Entry: <New Ticket>"
+        var title = "Ticket Entry:  New Ticket "
         if (blnIsEditMode) {
-            title = "Ticket Entry: <Editing Ticket Id: " + data[0].Id + ">"
+            title = "Ticket Entry: Editing Ticket Id: " + data[0].Id 
             //set the invoiceId for saving the ticket
             invoiceId = data[0].InvoiceId;
             //set the datepicker default value
