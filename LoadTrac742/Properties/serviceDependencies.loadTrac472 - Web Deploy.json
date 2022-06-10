@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "secretStore": "AzureKeyVault",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/raientdbserv1/databases/ArTraxDb",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:ArTraxTraxDbEntities"
+    }
+  }
+}

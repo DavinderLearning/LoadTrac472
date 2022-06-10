@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-LoadTrac742-20220609100625.mdf;Initial Catalog=aspnet-LoadTrac742-20220609100625;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Dev\\raient\\git\\LoadTrac472\\LoadTrac742\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="ArTraxDbEntities-Web.config Connection String" description="ArTraxDbEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.Model1.csdl|res://*/Models.Model1.ssdl|res://*/Models.Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=tcp:raientdbserv1.database.windows.net,1433;initial catalog=ArTraxDb;integrated security=false;User Id=ArTrax2@raientdbserv1;Password=RaiTrucking#76;;Encrypt=True;TrustServerCertificate=False;multipleactiveresultsets=True;application name=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Dev\\raient\\git\\LoadTrac472\\LoadTrac742\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ArTraxDbEntities']/@connectionString" />
+  </parameter>
+</parameters>

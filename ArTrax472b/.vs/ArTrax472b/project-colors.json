@@ -20,7 +20,12 @@
       "ProjectGuid": "7846dbd3-b31b-4b95-af35-e19853b2006f",
       "DisplayName": "TestBooStrap",
       "ColorIndex": 2
+    },
+    "46698171-2557-4c86-926b-bda56fab2dad": {
+      "ProjectGuid": "46698171-2557-4c86-926b-bda56fab2dad",
+      "DisplayName": "LoadTrac472",
+      "ColorIndex": 3
     }
   },
-  "NextColorIndex": 3
+  "NextColorIndex": 4
 }
