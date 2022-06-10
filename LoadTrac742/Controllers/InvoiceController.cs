@@ -12,7 +12,7 @@ namespace LoadTrac742.Controllers
   [Authorize(Roles = "INVOICING")]
   public class InvoiceController : Controller
   {
-    private ArTraxDbEntities db = new ArTraxDbEntities;
+    private ArTraxDbEntities db = new ArTraxDbEntities();
 
     public ActionResult Create(int pCustomerId) => (ActionResult) this.View((object) new Invoice()
     {

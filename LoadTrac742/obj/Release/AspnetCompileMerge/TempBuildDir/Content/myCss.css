@@ -1,0 +1,60 @@
+﻿.gridTickets {
+        height:600px; 
+}
+/*Page div*/
+.pageDiv{
+margin-left:10px; 
+margin-right:15px;  
+}
+
+ /* alternating row color for my tables*/
+.altRowColor {
+    background-color: lightyellow;
+}
+
+.gridPayments {
+    width:700px;
+}
+    
+
+
+/*Invoice Totals field alignment*/
+ .invoiceTotals {
+text-align:right;
+/*width:100%;*/
+}
+
+/*Invoice table alignment*/
+.right
+{
+position:absolute;
+right:0px;
+width:225px;
+top:90px;
+background-color:#CCCC66;
+/*height:400px;*/
+
+}
+
+/*hide key field*/
+.hideField {
+    visibility:hidden;
+    display: none;
+}
+
+
+/*Strandard CRUD Design*/
+.indexTableHeaders {
+    border-bottom:solid; 
+    border-top:solid; 
+    vertical-align:top;
+    background-color:greenyellow;
+    
+}
+
+td {
+    padding-right:80px;    
+}
+h2 {
+    color:darkolivegreen;
+}

@@ -257,7 +257,6 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="InvoiceLines" Relationship="Self.FK_dbo_InvoiceLines_dbo_Equips_EquipId" FromRole="Equips" ToRole="InvoiceLines" />
         </EntityType>
         <EntityType Name="InvoiceLine">
           <Key>
@@ -322,7 +321,6 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="InvoiceLines" Relationship="Self.FK_dbo_InvoiceLines_dbo_LoadTypes_LoadTypeId" FromRole="LoadTypes" ToRole="InvoiceLines" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -330,7 +328,6 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="InvoiceLines" Relationship="Self.FK_dbo_InvoiceLines_dbo_Products_ProductId" FromRole="Products" ToRole="InvoiceLines" />
         </EntityType>
         <EntityType Name="SystemSetting">
           <Key>
@@ -366,7 +363,6 @@
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ShortCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsContractor" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="InvoiceLines" Relationship="Self.FK_dbo_InvoiceLines_dbo_Trucks_TruckId" FromRole="Trucks" ToRole="InvoiceLines" />
         </EntityType>
         <Association Name="FK_dbo_InvoiceLines_dbo_Equips_EquipId">
           <End Role="Equips" Type="Self.Equip" Multiplicity="1">
