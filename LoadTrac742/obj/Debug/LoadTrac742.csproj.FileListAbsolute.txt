@@ -140,3 +140,4 @@ C:\Dev\raient\git\LoadTrac472\LoadTrac742\obj\Debug\LoadTrac742.csproj.CoreCompi
 C:\Dev\raient\git\LoadTrac472\LoadTrac742\obj\Debug\LoadTrac742.csproj.CopyComplete
 C:\Dev\raient\git\LoadTrac472\LoadTrac742\obj\Debug\LoadTrac742.dll
 C:\Dev\raient\git\LoadTrac472\LoadTrac742\obj\Debug\LoadTrac742.pdb
+C:\Dev\raient\git\LoadTrac472\LoadTrac742\obj\Debug\LoadTrac742.csproj.AssemblyReference.cache

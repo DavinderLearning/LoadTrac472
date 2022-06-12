@@ -25,7 +25,12 @@
       "ProjectGuid": "46698171-2557-4c86-926b-bda56fab2dad",
       "DisplayName": "LoadTrac472",
       "ColorIndex": 3
+    },
+    "09455eea-07de-4dca-841a-b1c3b9dce463": {
+      "ProjectGuid": "09455eea-07de-4dca-841a-b1c3b9dce463",
+      "DisplayName": "LoadTrac742",
+      "ColorIndex": 4
     }
   },
-  "NextColorIndex": 4
+  "NextColorIndex": 5
 }

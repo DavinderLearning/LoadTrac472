@@ -24,6 +24,7 @@ namespace LoadTrac742
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/myCss.css",
                       "~/Content/site.css"));
         }
     }
