@@ -29,3 +29,26 @@
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+
+<div id="grid"></div>
+<div id="gridTickets"></div>
+
+<script>
+
+    $(document).ready(function () {
+        console.log("loaded ready");
+
+       // loadOpenTickets()
+
+        $("#gridTickets").kendoGrid({
+            columns: [{
+                field: "Id",
+                title: "Id Is"
+            },
+            {
+                field: "TicketNumber",
+                title: "TIck"
+            }]
+        });
+    });
+</script>
