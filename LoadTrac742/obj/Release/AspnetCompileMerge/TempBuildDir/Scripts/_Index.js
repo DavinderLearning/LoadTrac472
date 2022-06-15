@@ -46,13 +46,13 @@ function loadOpenTicketsCallback(data) {
                 field: "Id",
                 title: "",
                 width: 60,
-                template: "<div class='k-button k-grid-edit' onclick=editTicket(#= kendo.toString(Id)#)  style='min-width:16px;'><span class='k-icon k-edit'></span></div>"
+                template: "<div class='k-button k-grid-edit' onclick=editTicket(#= kendo.toString(Id)#)  style='min-width:16px;'>Edit<span class='k-icon k-edit'></span></div>"
             }
             , {
                 field: "Id",
                 title: " ",
                 width: 60,
-                template: "<div class='k-button k-grid-delete' onclick=deleteTicket(#= kendo.toString(Id)#)  style='min-width:16px;'><span class='k-icon k-delete'></span></div>"
+                template: "<div class='k-button k-grid-delete' onclick=deleteTicket(#= kendo.toString(Id)#)  style='min-width:16px;'>Del<span class='k-icon k-delete'></span></div>"
             }
             , {
                 field: "TicketDate", title: "Date"
